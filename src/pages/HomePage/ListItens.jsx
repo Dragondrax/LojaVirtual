@@ -3,13 +3,17 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Card from '@mui/material/Card';
 import { styled } from '@mui/material/styles';
-import { 
-    Hidden, 
-    CardMedia, 
+import {
+    InputLabel,
+    CardMedia,
     CardContent,
     Switch,
-    TextField 
- } from '@mui/material';
+    TextField,
+    MenuItem,
+    FormControl,
+    Select,
+    Button
+} from '@mui/material';
 import CardActions from '@mui/material/CardActions';
 import Grid from '@mui/material/Grid';
 import axios from 'axios'
@@ -17,7 +21,7 @@ import Typography from '@mui/material/Typography';
 
 const CardItem = styled(Card)(({ theme }) => ({
     margin: theme.spacing(2),
-    background: theme.palette.background.default
+    background: theme.palette.background.default,
 }));
 
 const TextItem = styled(TextField)(({ theme }) => ({
@@ -30,18 +34,31 @@ const label = { inputProps: { 'aria-label': 'Switch demo' } };
 export default function ListItens() {
     const [produtos, setProdutos] = useState([])
     const [checked, setChecked] = useState(false);
+    const [ordernar, setOrdernar] = useState(false);
+    const [open, setOpen] = useState(false);
 
-  const handleChange = (event) => {
-    setChecked(event.target.checked);
-  };
+    const handleChange = (event) => {
+        setChecked(event.target.checked);
+    };
+
+    const handleChangeOrdem = (event) => {
+        setOrdernar(event.target.value);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
 
     useEffect(() => {
         axios.get("https://5d6da1df777f670014036125.mockapi.io/api/v1/product")
             .then((response) => {
-
-                setProdutos(response.data);
+                setProdutos(response.data)
             })
-    })
+    }, [ordernar])
 
     return (
         <>
@@ -56,8 +73,8 @@ export default function ListItens() {
                     },
                 }}
             >
-                {/* <Paper style={{ width: '20%', marginRight: '1%', height: '600px' }}>
-                    <Typography style={{ marginLeft: '5%', marginTop: '5%' }}> 
+                <Paper style={{ width: '20%', marginRight: '1%', height: '600px' }}>
+                    <Typography style={{ marginLeft: '5%', marginTop: '5%' }}>
                         {produtos.length} resultados..
                     </Typography>
                     <CardItem>
@@ -67,17 +84,7 @@ export default function ListItens() {
                             <TextItem id="standard-basic" label="Preço Máximo" variant="standard" />
                         </CardContent>
                     </CardItem>
-                    <CardItem>
-                        <CardContent>
-                            <span>Teste</span>
-                            <Switch 
-                                {...label} 
-                                checked={checked}
-                                onChange={handleChange}
-                            />
-                        </CardContent>
-                    </CardItem>
-                </Paper> */}
+                </Paper>
 
                 <Paper elevation={2} >
                     <Grid container spacing={5} >
