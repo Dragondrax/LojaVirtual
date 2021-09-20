@@ -1,5 +1,4 @@
 import { useRef, useState, useEffect } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import { alpha } from '@mui/material/styles';
 import {
@@ -16,6 +15,7 @@ import {
 } from '@mui/material';
 import MenuPopover from '../../components/MenuPopover';
 import { useCart } from '../../context/Cart'
+import { Link as RouterLink } from 'react-router-dom';
 
 export default function CartPopover() {
   const anchorRef = useRef(null);
@@ -85,11 +85,14 @@ export default function CartPopover() {
             notifications.map((obj) => (
               <Paper>
                 <br />
+                
                 <Card sx={{ width: "90%", display: "flex", justifyContent: "space-between", marginLeft: "5%" }}>
-                  <Box component="img" src={obj.Image} sx={{ width: "50px", height: "50px" }} alt={obj.Name} />
-                  <ListItemText sx={{ paddingLeft: "5%" }}>
-                    {obj.Name}: <br />Qtd: {obj.Item}  <br />{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(obj.Price * obj.Item)}
-                  </ListItemText>
+                  <Button sx={{ width: "100%"}} to='/cart' component={RouterLink}>  
+                    <Box component="img" src={obj.Image} sx={{ width: "50px", height: "50px" }} alt={obj.Name} />
+                    <ListItemText sx={{ paddingLeft: "5%" }} color="gray">
+                      {obj.Name}: <br />Qtd: {obj.Item}  <br />{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(obj.Price * obj.Item)}
+                    </ListItemText>
+                  </Button>
                 </Card>
                 <br />
                 <Divider />

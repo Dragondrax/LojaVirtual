@@ -63,7 +63,7 @@ export default function Cart() {
                         <Divider />
                         {
                             Cart.map((obj, index) => (
-                                <Grid item xl={12} md={12} sm={12}>
+                                <Grid item xl={12} md={12} sm={12} key={ index }>
                                     <br />
                                     <Card sx={{ display: 'flex', flexWrap: 'nowrap', width: "100%", height: "100%", padding: "15px" }}>
                                         <Box component="img" src={obj.Image} sx={{ width: "300px", height: "100%" }} alt="imagem_Visa" />
@@ -157,7 +157,7 @@ export default function Cart() {
                         <Divider />
                         {
                             Cart.map((obj, index) => (
-                                <Grid item xl={12} md={12} sm={12}>
+                                <Grid item xl={12} md={12} sm={12} key={ index }>
                                     <br />
                                     <Card sx={{ display: 'flex', flexWrap: 'wrap', width: "100%", height: "100%" }}>
                                         <Box component="img" src={obj.Image} sx={{ width: "300px", height: "100%" }} alt="imagem_Visa" />
@@ -208,18 +208,18 @@ export default function Cart() {
                                 </Grid>
                             ))
                         }
-                        <Typography
+                       <Typography
                             variant="h5"
                             sx={{ display: "flex", justifyContent: "flex-end" }}
                         >
-                            Preço Total: {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(Cart.reduce((acc, obj) => { return acc + (obj.Price * obj.Item) }, 0))}
+                            Preço Total: {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(valorFinal)}
                         </Typography>
                         <Typography
                             variant="subtitle1"
                             sx={{ display: "flex", justifyContent: "flex-end" }}
                             color="#00a650"
                         >
-                            {Cart.reduce((acc, obj) => { return acc + (obj.Price * obj.Item) < 50 ? <span> Em até 6x de {Number(acc + (obj.Price * obj.Item) / 6)}</span> : <span> Em até 12x de {Number(acc + (obj.Price * obj.Item) / 12)}</span> }, 0)}
+                            {valorFinal < 50 ? <span> Em até 6x de {(valorFinal / 6).toFixed(2)}</span> : <span> Em até 12x de {(valorFinal / 12).toFixed(2)}</span> }
                         </Typography>
                         <Typography
                             variant="subtitle1"

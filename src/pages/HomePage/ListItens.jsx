@@ -52,30 +52,17 @@ export default function ListItens() {
     }, [])
     return (
         <>
-            <img src="/images/anuncioPrincipal.png" width="100%" style={{ marginBottom: '5%' }} />
+            <img src="/images/anuncioPrincipal2.jfif" width="100%" style={{ marginBottom: '5%' }} />
             <Box
                 sx={{
                     display: 'flex',
                     flexWrap: 'nowrap',
                     '& > :not(style)': {
                         m: 0,
-                        width: '80%',
+                        width: '100%',
                     },
                 }}
             >
-                <Paper style={{ width: '20%', marginRight: '1%', height: '300px' }}>
-                    <Typography style={{ marginLeft: '5%', marginTop: '5%' }}>
-                        Encontrado {produtos.length} resultados..
-                    </Typography>
-                    <CardItem>
-                        <CardContent>
-                            <span>Preço: </span>
-                            <TextItem id="standard-basic" label="Preço Mínimo" variant="standard" />
-                            <TextItem id="standard-basic" label="Preço Máximo" variant="standard" />
-                        </CardContent>
-                    </CardItem>
-                </Paper>
-
                 <Paper elevation={2} >
                     <Grid container spacing={5} >
                         <Paper>

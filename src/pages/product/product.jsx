@@ -125,7 +125,6 @@ export default function Product(props) {
                                 </FormControl>
                                 <Divider />
                                 <br />
-                                <Button variant="contained" size="large" sx={{ width: "100%", height: "100%", marginBottom: "2%" }}>Comprar</Button>
                                 <Button variant="contained" size="large" sx={{ width: "100%", height: "100%" }} to='/cart' component={RouterLink} onClick={handleClickAddCart} >Adicionar ao Carrinho</Button>
                             </CardContent>
                         </Card>

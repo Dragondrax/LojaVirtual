@@ -3,6 +3,7 @@ import { alpha, styled } from '@mui/material/styles';
 import { Box, Stack, AppBar, Toolbar, IconButton } from '@mui/material';
 import Logo from '../../components/Logo'
 import CartPopover from './Cart';
+import {Link as RouterLink} from 'react-router-dom'
 
 // ----------------------------------------------------------------------
 
@@ -38,7 +39,7 @@ export default function DashboardNavbar({ onOpenSidebar }) {
   return (
     <RootStyle>
       <ToolbarStyle>
-        <Box sx={{ flexGrow: 1 }}>
+        <Box sx={{ flexGrow: 1 }} component={RouterLink} to="/">
           <Stack direction="row" alignItems="center" spacing={{ xs: 0.5, sm: 1.5 }}>
             <Logo />
           </Stack>
