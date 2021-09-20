@@ -26,7 +26,7 @@ export default function CartPopover() {
   const anchorRef = useRef(null);
   const [open, setOpen] = useState(false);
   const [notifications, setNotifications] = useState(JSON.parse(localStorage.getItem("@Cart")));
-  const [produtosCarrinho, setProdutoCarrinho] = useState([])  
+  const [produtosCarrinho, setProdutoCarrinho] = useState(notifications.filter((item) => item.Name).length)  
   const { item } = new useCart();
 
   useEffect(() => {
@@ -44,6 +44,11 @@ export default function CartPopover() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleClick = () => { 
+    localStorage.removeItem("@Cart")
+    localStorage.setItem("@Cart", JSON.stringify([]))
+  }
 
 
   return (
@@ -110,14 +115,7 @@ export default function CartPopover() {
           }
 
         </List>
-
         <Divider />
-
-        <Box sx={{ p: 1 }}>
-          <Button fullWidth disableRipple component={RouterLink} to="#">
-            Exluir Carrinho
-          </Button>
-        </Box>
       </MenuPopover>
     </>
   );
