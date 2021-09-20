@@ -1,20 +1,16 @@
-import react, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
+import { Link as RouterLink } from 'react-router-dom';
+import Product from '../product/product'
 import Card from '@mui/material/Card';
 import { styled } from '@mui/material/styles';
 import {
-    InputLabel,
     CardMedia,
     CardContent,
-    Switch,
     TextField,
-    MenuItem,
-    FormControl,
-    Select,
     Button
 } from '@mui/material';
-import CardActions from '@mui/material/CardActions';
 import Grid from '@mui/material/Grid';
 import axios from 'axios'
 import Typography from '@mui/material/Typography';
@@ -31,35 +27,29 @@ const TextItem = styled(TextField)(({ theme }) => ({
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
+
 export default function ListItens() {
     const [produtos, setProdutos] = useState([])
-    const [checked, setChecked] = useState(false);
-    const [ordernar, setOrdernar] = useState(false);
-    const [open, setOpen] = useState(false);
 
-    const handleChange = (event) => {
-        setChecked(event.target.checked);
-    };
 
-    const handleChangeOrdem = (event) => {
-        setOrdernar(event.target.value);
-    };
+    function ItemDetailProps(image, name, price, stock) {
+        localStorage.removeItem("@Image", image)
+        localStorage.removeItem("@Name", name)
+        localStorage.removeItem("@Price", price)
+        localStorage.removeItem("@Stock", stock)
 
-    const handleClose = () => {
-        setOpen(false);
-    };
-
-    const handleOpen = () => {
-        setOpen(true);
-    };
+        localStorage.setItem("@Image", image)
+        localStorage.setItem("@Name", name)
+        localStorage.setItem("@Price", price)
+        localStorage.setItem("@Stock", stock)
+    }
 
     useEffect(() => {
         axios.get("https://5d6da1df777f670014036125.mockapi.io/api/v1/product")
             .then((response) => {
                 setProdutos(response.data)
             })
-    }, [ordernar])
-
+    }, [])
     return (
         <>
             <img src="/images/anuncioPrincipal.png" width="100%" style={{ marginBottom: '5%' }} />
@@ -73,9 +63,9 @@ export default function ListItens() {
                     },
                 }}
             >
-                <Paper style={{ width: '20%', marginRight: '1%', height: '600px' }}>
+                <Paper style={{ width: '20%', marginRight: '1%', height: '300px' }}>
                     <Typography style={{ marginLeft: '5%', marginTop: '5%' }}>
-                        {produtos.length} resultados..
+                        Encontrado {produtos.length} resultados..
                     </Typography>
                     <CardItem>
                         <CardContent>
@@ -93,27 +83,38 @@ export default function ListItens() {
                         </Paper>
                         {produtos.map((item, index) =>
                         (
-                            <Grid item xl={3} lg={4} sm={6}>
+                            <Grid item xl={3} lg={4} sm={6} key={index}>
                                 <CardItem>
-                                    <CardMedia sx={{ width: '100%' }}
+                                    <CardMedia sx={{ width: '100%', height: '100%' }}
                                         component="img"
                                         image={item.image}
                                         alt="Paella dish"
                                     >
                                     </CardMedia>
-                                    <CardContent>
-                                        <Typography
-                                            variant="h5"
-                                        >
-                                            R$ {item.price}
+                                    <Button size="medium" sx={{width: '100%', height: '150px'}} to='/product' component={RouterLink} onClick={() => {ItemDetailProps(item.image, item.name, item.price, item.stock)}}>
+                                        <CardContent>
+                                            <Typography
+                                                variant="h5"
+                                            >
+                                                R$ {item.price}
+                                            </Typography>
+                                            <Typography>
+                                                {
+                                                    item.price  < 50 ?
+                                                        <span> em 6x de R$: {(item.price / 6).toFixed(2)} sem juros </span>
+                                                    :
+                                                        <span> em 12x de R$: {(item.price / 12).toFixed(2)} sem juros </span>
 
-                                        </Typography>
-                                        <Typography
-                                            variant="subtitle1"
-                                        >
-                                            {item.name}
-                                        </Typography>
-                                    </CardContent>
+                                                }
+                                            </Typography>
+                                            <Typography
+                                                variant="subtitle1"
+                                                sx={{color: "gray"}}
+                                            >
+                                                {item.name}
+                                            </Typography>
+                                        </CardContent>
+                                    </Button>
                                 </CardItem>
                             </Grid>
                         ))

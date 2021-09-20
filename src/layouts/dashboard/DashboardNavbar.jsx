@@ -1,11 +1,8 @@
 import PropTypes from 'prop-types';
-import { Icon } from '@iconify/react';
-import menu2Fill from '@iconify/icons-eva/menu-2-fill';
 import { alpha, styled } from '@mui/material/styles';
 import { Box, Stack, AppBar, Toolbar, IconButton } from '@mui/material';
-import { MHidden } from '../../components/@material-extend';
 import Logo from '../../components/Logo'
-import NotificationsPopover from './NotificationsPopover';
+import NotificationsPopover from './Cart';
 
 // ----------------------------------------------------------------------
 
@@ -41,17 +38,8 @@ export default function DashboardNavbar({ onOpenSidebar }) {
   return (
     <RootStyle>
       <ToolbarStyle>
-        <MHidden width="smUp">
-          <IconButton onClick={onOpenSidebar} sx={{ mr: 1, color: 'text.primary' }}>
-            <Icon icon={menu2Fill} />
-          </IconButton>
-        </MHidden>
-
-
-
         <Box sx={{ flexGrow: 1 }}>
           <Stack direction="row" alignItems="center" spacing={{ xs: 0.5, sm: 1.5 }}>
-            
             <Logo />
           </Stack>
         </Box>
