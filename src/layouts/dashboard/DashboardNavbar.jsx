@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { alpha, styled } from '@mui/material/styles';
 import { Box, Stack, AppBar, Toolbar, IconButton } from '@mui/material';
 import Logo from '../../components/Logo'
-import NotificationsPopover from './Cart';
+import CartPopover from './Cart';
 
 // ----------------------------------------------------------------------
 
@@ -46,11 +46,11 @@ export default function DashboardNavbar({ onOpenSidebar }) {
 
         <Box sx={{ flexGrow: 0 }}>
           <Stack direction="row" alignItems="center" spacing={{ xs: 0.5, sm: 1.5 }}>
-            <NotificationsPopover />
+            <CartPopover />
           </Stack>
         </Box>
 
       </ToolbarStyle>
-    </RootStyle>
-  );
+      </RootStyle>
+    );  
 }

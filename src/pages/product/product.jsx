@@ -16,6 +16,7 @@ import {
     Box
 } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
+import { useCart } from '../../context/Cart'
 
 
 export default function Product(props) {
@@ -23,6 +24,7 @@ export default function Product(props) {
     const [stock, setStock] = useState(localStorage.getItem("@Stock"))
     const [name, setName] = useState(localStorage.getItem("@Name"))
     const [price, setPrice] = useState(localStorage.getItem("@Price"))
+    const { updateItem } = new useCart();
     const [item, setItens] = useState(1);
 
     const handleChange = (event) => {
@@ -40,9 +42,11 @@ export default function Product(props) {
             let newCart = Cart.filter((obj) => {return obj.Name != name})
             newCart.push(VerifyItem)
             localStorage.setItem("@Cart", JSON.stringify(newCart))
+            updateItem(newCart)
         }else{
             Cart.push(Item);
             localStorage.setItem("@Cart", JSON.stringify(Cart))
+            updateItem(Cart)
         }
     }
 
@@ -52,7 +56,7 @@ export default function Product(props) {
                 <br /><br />
                 <Grid item xl={12} lg={12} sm={12}>
                     <Card sx={{ paddingLeft: "15%", paddingTop: "5%", display: 'flex', flexWrap: 'wrap', }}>
-                        <CardMedia sx={{ width: '40rem', height: '35rem' }}
+                        <CardMedia sx={{ width: '45rem', height: '35rem' }}
                             component="img"
                             image={image}
                             alt="Paella dish"
@@ -108,18 +112,15 @@ export default function Product(props) {
                                         onChange={handleChange}
                                         label="Quantidade"
                                     >
-                                        <MenuItem value="">
-                                            <em></em>
-                                        </MenuItem>
                                         <MenuItem value={1}>1 unidade</MenuItem>
-                                        <MenuItem value={2}>2 unidade</MenuItem>
-                                        <MenuItem value={3}>3 unidade</MenuItem>
-                                        <MenuItem value={4}>4 unidade</MenuItem>
-                                        <MenuItem value={5}>5 unidade</MenuItem>
-                                        <MenuItem value={6}>6 unidade</MenuItem>
-                                        <MenuItem value={7}>7 unidade</MenuItem>
-                                        <MenuItem value={8}>8 unidade</MenuItem>
-                                        <MenuItem value={9}>9 unidade</MenuItem>
+                                        <MenuItem value={2}>2 unidades</MenuItem>
+                                        <MenuItem value={3}>3 unidades</MenuItem>
+                                        <MenuItem value={4}>4 unidades</MenuItem>
+                                        <MenuItem value={5}>5 unidades</MenuItem>
+                                        <MenuItem value={6}>6 unidades</MenuItem>
+                                        <MenuItem value={7}>7 unidades</MenuItem>
+                                        <MenuItem value={8}>8 unidades</MenuItem>
+                                        <MenuItem value={9}>9 unidades</MenuItem>
                                     </Select>
                                 </FormControl>
                                 <Divider />
