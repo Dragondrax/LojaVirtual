@@ -19,6 +19,7 @@ export default function Router() {
         { path: 'home', element: <DashboardApp /> },
         { path: 'product', element: <ProductPage /> },
         { path: 'cart', element: <Cart /> },
+        { path: '/404', element: <NotFound /> },
       ]
     },
     { path: '*', element: <Navigate to="/404" replace /> }
