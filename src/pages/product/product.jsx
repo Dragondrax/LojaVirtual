@@ -29,9 +29,20 @@ export default function Product(props) {
     };
 
     const handleClickAddCart = (event) => {
-        localStorage.setItem("@NameItemCart", name)
-        localStorage.setItem("@ItensItemCart", item)
-        localStorage.setItem("@PriceItemCart", price * item)
+        const Item = {Name: name, Price: price, Item: item, Image: image}
+        const Cart = JSON.parse(localStorage.getItem("@Cart")) || [];
+        
+        let VerifyItem = Cart.find((obj) => {return obj.Name == name})
+
+        if(VerifyItem) {
+            VerifyItem = {...VerifyItem, Item: item}
+            let newCart = Cart.filter((obj) => {return obj.Name != name})
+            newCart.push(VerifyItem)
+            localStorage.setItem("@Cart", JSON.stringify(newCart))
+        }else{
+            Cart.push(Item);
+            localStorage.setItem("@Cart", JSON.stringify(Cart))
+        }
     }
 
     return (
@@ -82,7 +93,7 @@ export default function Product(props) {
                                 <Typography
                                     variant="subtitle1"
                                 >
-                                    Estoque Disponivel <br/>
+                                    Estoque Disponivel <br />
                                     Compra Limitada à 9 itens
 
                                 </Typography>
@@ -157,8 +168,8 @@ export default function Product(props) {
                             >
                                 Compra Garantida com a Haydomic Store <br />
                                 Receba o produto que está esperando ou devolvemos o seu dinheiro <br />
-                                Você tem 30 dias a contar da data de recebimento. <br/>
-                                Você pode enviá-lo da agência de Correios mais próxima. <br/>
+                                Você tem 30 dias a contar da data de recebimento. <br />
+                                Você pode enviá-lo da agência de Correios mais próxima. <br />
                                 Para devolver, o produto deve estar nas mesmas condições nas quais você o recebeu
                             </Typography>
                         </CardContent>

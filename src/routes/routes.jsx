@@ -3,7 +3,7 @@ import { Navigate, useRoutes } from 'react-router-dom';
 import Layout from '../layouts/dashboard';
 //
 import DashboardApp from '../pages/HomePage/HomePage';
-import ProductPage from '../pages/product/index'
+import ProductPage from '../pages/Product/index'
 import NotFound from '../pages/404/Page404';
 
 // ----------------------------------------------------------------------

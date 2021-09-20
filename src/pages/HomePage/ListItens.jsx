@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import { Link as RouterLink } from 'react-router-dom';
-import Product from '../product/product'
+import Product from '../Product/product'
 import Card from '@mui/material/Card';
 import { styled } from '@mui/material/styles';
 import {
