@@ -1,12 +1,12 @@
 import { Box, Grid, Container, Typography } from '@mui/material';
 import Page from '../../components/Page';
-import ListItens from './ListItens'
+import Cart from './Cart'
 export default function CartPage() {
   return (
     <Page title="Carrinho | Haydomic Store">
       <Container maxWidth="xl" >
         <Box sx={{ pb: 5 }}>
-          <ListItens />
+          <Cart />
         </Box>
         <Grid container spacing={3}>
         </Grid>

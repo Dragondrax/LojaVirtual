@@ -15,6 +15,7 @@ import {
     Grid,
     Box
 } from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
 
 
 export default function Product(props) {
@@ -124,7 +125,7 @@ export default function Product(props) {
                                 <Divider />
                                 <br />
                                 <Button variant="contained" size="large" sx={{ width: "100%", height: "100%", marginBottom: "2%" }}>Comprar</Button>
-                                <Button variant="contained" size="large" sx={{ width: "100%", height: "100%" }} onClick={handleClickAddCart}>Adicionar ao Carrinho</Button>
+                                <Button variant="contained" size="large" sx={{ width: "100%", height: "100%" }} to='/cart' component={RouterLink} onClick={handleClickAddCart} >Adicionar ao Carrinho</Button>
                             </CardContent>
                         </Card>
                     </Card>
