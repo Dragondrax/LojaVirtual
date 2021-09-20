@@ -18,12 +18,20 @@ import { useCart } from '../../context/Cart'
 import { Link as RouterLink } from 'react-router-dom';
 
 export default function CartPopover() {
+  const Cart = JSON.parse(localStorage.getItem("@Cart"));
+  console.log(Cart)
+  if(!Cart){
+    localStorage.setItem("@Cart", JSON.stringify([]))
+  }
   const anchorRef = useRef(null);
-  const Itens = JSON.parse(localStorage.getItem("@Cart"));
   const [open, setOpen] = useState(false);
-  const [notifications, setNotifications] = useState(Itens);
-  const produtosCarrinho = notifications.filter((item) => item.Name).length;
+  const [notifications, setNotifications] = useState(JSON.parse(localStorage.getItem("@Cart")));
+  const [produtosCarrinho, setProdutoCarrinho] = useState([])  
   const { item } = new useCart();
+
+  useEffect(() => {
+    setProdutoCarrinho(notifications.filter((item) => item.Name).length);
+  }, [item])
 
   useEffect(() => {
     setNotifications(JSON.parse(localStorage.getItem("@Cart")))
