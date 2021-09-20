@@ -89,11 +89,6 @@ export default function CartPopover() {
         <List
           disablePadding
         >
-          {/* {notifications.map((obj) => (
-              <NotificationItem>
-                {obj}
-              </NotificationItem>
-            ))} */}
           {
             notifications.map((obj) => (
               <Paper>

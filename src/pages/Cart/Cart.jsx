@@ -2,14 +2,12 @@ import react, { useState, useEffect } from 'react';
 import {
     Card,
     CardContent,
-    CardMedia,
     Typography,
     Divider,
     Button,
     Grid,
     Box,
     Hidden,
-    IconButton,
     FormControl,
     InputLabel,
     Select,
@@ -87,10 +85,10 @@ export default function Cart() {
                                                 Qtd: {obj.Item}
                                             </Typography>
                                             <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-                                                <InputLabel id="demo-simple-select-standard-label">Qtd Itens</InputLabel>
+                                                <InputLabel id="qtdItens">Qtd Itens</InputLabel>
                                                 <Select
-                                                    labelId="demo-simple-select-standard-label"
-                                                    id="demo-simple-select-standard"
+                                                    labelId="qtdItens"
+                                                    id="qtdItens"
                                                     value={obj.Item}
                                                     onChange={(event) => handleChange(obj.Name, event.target.value)}
                                                     label="Qtd Itens"
@@ -178,10 +176,10 @@ export default function Cart() {
                                             </Grid>
                                             <Grid>
                                                 <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-                                                    <InputLabel id="demo-simple-select-standard-label">Qtd Itens</InputLabel>
+                                                    <InputLabel id="qtdItens2">Qtd Itens</InputLabel>
                                                     <Select
-                                                        labelId="demo-simple-select-standard-label"
-                                                        id="demo-simple-select-standard"
+                                                        labelId="qtdItens2"
+                                                        id="qtdItens2"
                                                         value={obj.Item}
                                                         onChange={(event) => handleChange(obj.Name, event.target.value)}
                                                         label="Qtd Itens"
