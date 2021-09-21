@@ -19,7 +19,6 @@ import { Link as RouterLink } from 'react-router-dom';
 
 export default function CartPopover() {
   const Cart = JSON.parse(localStorage.getItem("@Cart"));
-  console.log(Cart)
   if(!Cart){
     localStorage.setItem("@Cart", JSON.stringify([]))
   }
