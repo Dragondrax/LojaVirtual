@@ -14,17 +14,28 @@ import {
     Grid,
     Box
 } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useParams } from 'react-router-dom';
 import { useCart } from '../../context/Cart'
+import axios from 'axios';
 
 
 export default function Product(props) {
-    const [image, setImage] = useState(localStorage.getItem("@Image"))
-    const [stock, setStock] = useState(localStorage.getItem("@Stock"))
-    const [name, setName] = useState(localStorage.getItem("@Name"))
-    const [price, setPrice] = useState(localStorage.getItem("@Price"))
+    const [image, setImage] = useState()
+    const [stock, setStock] = useState()
+    const [name, setName] = useState()
+    const [price, setPrice] = useState()
     const { updateItem } = new useCart();
     const [item, setItens] = useState(1);
+
+    useEffect(() => {
+        axios.get(`https://5d6da1df777f670014036125.mockapi.io/api/v1/product/${props.id}`)
+        .then((response) => {
+            setImage(response.data.image)
+            setStock(response.data.stock)
+            setName(response.data.name)
+            setPrice(response.data.price)
+        })
+    }, [])
 
     const handleChange = (event) => {
         setItens(event.target.value);

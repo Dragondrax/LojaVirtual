@@ -15,12 +15,12 @@ export const ItemContext = createContext<Cart>(
 
 export function ItemProvider({children} : ItemContextProps) {
     const [item, setItem] = useState([]);
+    const [cartItens, setCartItens] = useState([])
 
-    function updateItem (props:any) {
+    function updateItem (props: any) {
         const itemProps = props;
         setItem(itemProps)
-    }
-    
+    }    
 
     return(
         <ItemContext.Provider value={ { updateItem, item} }>

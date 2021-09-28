@@ -17,16 +17,10 @@ import { Icon } from '@iconify/react';
 import { useCart } from '../../context/Cart'
 
 export default function Cart() {
-    const [Cart, setCart] = useState(JSON.parse(localStorage.getItem("@Cart")))
-    const [Itens, setItens] = useState(0)
-    const [test, setTest] = useState()
-    const [valorFinal, setValorFinal] = useState(0.0)
+    const [cart, setCart] = useState(JSON.parse(localStorage.getItem("@Cart")))
     const { updateItem } = new useCart();
     
-    useEffect(() => {
-        setValorFinal(Cart.reduce((acc, obj) => { return acc + (obj.Price * obj.Item) }, 0))
-    }, [Cart])
-    
+    const valorFinal = cart.reduce((acc, obj) => { return acc + (obj.Price * obj.Item) }, 0)
 
     function handleClickExcluir(name) {
         const newCart = Cart.filter((obj) => { return name != obj.Name })
@@ -55,12 +49,12 @@ export default function Cart() {
                             variant="h5"
                             sx={{ marginTop: "5%", marginLeft: "10%" }}
                         >
-                            Carrinho ({Cart.length})
+                            Carrinho ({cart.length})
                         </Typography>
                         <br />
                         <Divider />
                         {
-                            Cart.map((obj, index) => (
+                            cart.map((obj, index) => (
                                 <Grid item xl={12} md={12} sm={12} key={ index }>
                                     <br />
                                     <Card sx={{ display: 'flex', flexWrap: 'nowrap', width: "100%", height: "100%", padding: "15px" }}>
@@ -149,12 +143,12 @@ export default function Cart() {
                             variant="h5"
                             sx={{ marginTop: "5%", marginLeft: "10%" }}
                         >
-                            Carrinho ({Cart.length})
+                            Carrinho ({cart.length})
                         </Typography>
                         <br />
                         <Divider />
                         {
-                            Cart.map((obj, index) => (
+                            cart.map((obj, index) => (
                                 <Grid item xl={12} md={12} sm={12} key={ index }>
                                     <br />
                                     <Card sx={{ display: 'flex', flexWrap: 'wrap', width: "100%", height: "100%" }}>

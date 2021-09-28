@@ -26,22 +26,8 @@ const TextItem = styled(TextField)(({ theme }) => ({
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
-
 export default function ListItens() {
     const [produtos, setProdutos] = useState([])
-
-
-    function ItemDetailProps(image, name, price, stock) {
-        localStorage.removeItem("@Image", image)
-        localStorage.removeItem("@Name", name)
-        localStorage.removeItem("@Price", price)
-        localStorage.removeItem("@Stock", stock)
-
-        localStorage.setItem("@Image", image)
-        localStorage.setItem("@Name", name)
-        localStorage.setItem("@Price", price)
-        localStorage.setItem("@Stock", stock)
-    }
 
     useEffect(() => {
         axios.get("https://5d6da1df777f670014036125.mockapi.io/api/v1/product")
@@ -77,7 +63,7 @@ export default function ListItens() {
                                         alt="Paella dish"
                                     >
                                     </CardMedia>
-                                    <Button size="medium" sx={{width: '100%', height: '150px'}} to='/product' component={RouterLink} onClick={() => {ItemDetailProps(item.image, item.name, item.price, item.stock)}}>
+                                    <Button size="medium" sx={{width: '100%', height: '150px'}} to= {`/product/${item.id}`} component={RouterLink}>
                                         <CardContent>
                                             <Typography
                                                 variant="h5"

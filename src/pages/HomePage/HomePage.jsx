@@ -1,4 +1,4 @@
-import { Box, Grid, Container, Typography } from '@mui/material';
+import { Box, Grid, Container } from '@mui/material';
 import Page from '../../components/Page';
 import ListItens from './ListItens'
 export default function HomePage() {

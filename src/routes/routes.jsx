@@ -10,6 +10,7 @@ import NotFound from '../pages/404/Page404';
 // ----------------------------------------------------------------------
 
 export default function Router() {
+  
   return useRoutes([
     {
       path: '/',
@@ -17,7 +18,7 @@ export default function Router() {
       children: [
         { element: <Navigate to="/home" replace /> },
         { path: 'home', element: <DashboardApp /> },
-        { path: 'product', element: <ProductPage /> },
+        { path: 'product/:id', element: <ProductPage /> },
         { path: 'cart', element: <Cart /> },
         { path: '/404', element: <NotFound /> },
       ]
