@@ -22,22 +22,26 @@ export default function Cart() {
     
     const valorFinal = cart.reduce((acc, obj) => { return acc + (obj.Price * obj.Item) }, 0)
 
-    function handleClickExcluir(name) {
-        const newCart = Cart.filter((obj) => { return name != obj.Name })
+    function setLocalStorageCart (cart) {
+        localStorage.setItem("@Cart", JSON.stringify(cart));
+    }
+
+    function handleClickExcluir(id) {
+        const newCart = cart.filter((obj) => { return id != obj.id })
         setCart(newCart)
-        localStorage.setItem("@Cart", JSON.stringify(newCart));
+        setLocalStorageCart(newCart)
         updateItem(newCart)
     }
 
-    function handleChange(name, item) {
-        const newCart = [...Cart]
-        const existingProduct = newCart.find((obj) => { return obj.Name == name; })
+    function handleUnitsItemChange(id, item) {
+        const newCart = [...cart]
+        const existingProduct = newCart.find((obj) => { return obj.id == id; })
         if (existingProduct) {
             existingProduct.Item = item
             setCart(newCart)
+            setLocalStorageCart(newCart)
             updateItem(newCart)
         }
-        localStorage.setItem("@Cart", JSON.stringify(newCart))
     }
 
     return (
@@ -84,7 +88,7 @@ export default function Cart() {
                                                     labelId="qtdItens"
                                                     id="qtdItens"
                                                     value={obj.Item}
-                                                    onChange={(event) => handleChange(obj.Name, event.target.value)}
+                                                    onChange={(event) => handleUnitsItemChange(obj.id, event.target.value)}
                                                     label="Qtd Itens"
                                                     key={index}
                                                 >
@@ -99,7 +103,7 @@ export default function Cart() {
                                                     <MenuItem value={9}>9 unidades</MenuItem>
                                                 </Select>
                                             </FormControl>
-                                            <Button onClick={() => { handleClickExcluir(obj.Name) }} endIcon={<Icon icon="bx:bxs-trash" width="34" height="34" sx={{ zIndex: "5" }} />} />
+                                            <Button onClick={() => { handleClickExcluir(obj.id) }} endIcon={<Icon icon="bx:bxs-trash" width="34" height="34" sx={{ zIndex: "5" }} />} />
                                         </CardContent>
                                     </Card>
                                     <br />
@@ -175,7 +179,7 @@ export default function Cart() {
                                                         labelId="qtdItens2"
                                                         id="qtdItens2"
                                                         value={obj.Item}
-                                                        onChange={(event) => handleChange(obj.Name, event.target.value)}
+                                                        onChange={(event) => handleUnitsItemChange(obj.id, event.target.value)}
                                                         label="Qtd Itens"
                                                         key={index}
                                                     >
@@ -190,7 +194,7 @@ export default function Cart() {
                                                         <MenuItem value={9}>9 unidades</MenuItem>
                                                     </Select>
                                                 </FormControl>
-                                                <Button onClick={() => { handleClickExcluir(obj.Name) }} sx={{ justifyContent: "center", alignItems: "center", alignText: "center", marginLeft: "auto", marginTop: "auto" }} endIcon={<Icon icon="bx:bxs-trash" width="50" height="50" />} />
+                                                <Button onClick={() => { handleClickExcluir(obj.id) }} sx={{ justifyContent: "center", alignItems: "center", alignText: "center", marginLeft: "auto", marginTop: "auto" }} endIcon={<Icon icon="bx:bxs-trash" width="50" height="50" />} />
                                             </Grid>
                                         </CardContent>
                                     </Card>
